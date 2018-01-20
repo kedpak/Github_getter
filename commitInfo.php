@@ -17,7 +17,7 @@
 		    window.location.replace(profile_url);
 		  });
 	       });
-  </script>
+	</script>
 </head>
 
 <body>
@@ -25,16 +25,15 @@
 	<div class="container">
 	   <header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
 	      <section class="header_title col-md-9 col-sm-9 col-xs-8">
-		<h1>Kanopy Project</h1>
-		   <p>Details about commit</p>
+	         <h1>Kanopy Project</h1>
+	         <p>Details about commit</p>
 	      </section>
            </header>
 	<div class="row page_title col-md-12 col-sm-12 col-xs-12">
-	     <h2 id="btn">Information about commit</h2>
+	   <h2 id="btn">Information about commit</h2>
 	</div>
 
     <?php
-
         //Send UserAgent header to be allowed access to Github api
         $opts = [
             'http' => [
@@ -44,35 +43,33 @@
                 ]
             ]
         ];
-
         $context = stream_context_create($opts);
 
         // Grab sha-id which was posted on view 1
-				print_r($_POST); // The ajax call is NOT posting the data to this page. Needs fix
+	print_r($_POST); // The ajax call is NOT posting the data to this page. Needs fix
 
         // This api call should actually end with an append of a sha key posted from ajax call
         $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits/master', false, $context);
         $obj = json_decode($json);
-
       ?>
              <!-- section for profile picture -->
             <section class="row col-md-12 col-sm-12 col-xs-12">
-                <figure class="col-md-4">
-                    <figcaption class="figcap">Profile!</figcaption></a>
-                       <div class="Info!">
-                          <div class="pic" data-url=<?php print_r($obj->author->html_url); ?>>
-                            <img src=<?php print_r($obj->committer->avatar_url); ?> width="280px" height="300px"/>
-                          </div>
-                      </div>
+               <figure class="col-md-4">
+                  <figcaption class="figcap">Profile!</figcaption></a>
+                     <div class="Info!">
+                        <div class="pic" data-url=<?php print_r($obj->author->html_url); ?>>
+                           <img src=<?php print_r($obj->committer->avatar_url); ?> width="280px" height="300px"/>
+                        </div>
+                     </div>
                 </figure>
 
-           <!-- Section for displaying results of details for commit -->
-          <figure class="col-md-4">
-                <div class="details">
-                  <h3 class="files"> Files </h3>
+               <!-- Section for displaying results of details for commit -->
+               <figure class="col-md-4">
+                  <div class="details">
+                     <h3 class="files"> Files </h3>
                      <div class="file_details">
-                       <?php
-                          // Loops through files array and returns details of each file
+                     <?php
+                         // Loops through files array and returns details of each file
                           foreach($obj->files as $res) {
                             echo "<p> FILENAME:  </p>";
                             print_r($res->filename);
@@ -86,12 +83,11 @@
                             echo "<p> CHANGES: </p>";
                             print_r($res->changes);
                           }
-                        ?>
-                    </div>
-              </div>
-         </figure>
-
-      </section>
-	</div>
+                      ?>
+                      </div>
+                   </div>
+                </figure>
+             </section>
+        </div>
 </body>
 </html>

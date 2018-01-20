@@ -12,40 +12,39 @@
 	<script type="text/javascript">
 	  /* jQuery method which utilizes click event to change page and save sha of specific commit clicked on
 	       and post to the next page */
-	  $(function (){
+	   $(function (){
               $(".commit").click(function(){
-							const sha_id = $(this).data("sha");
-              $.ajax({
-                 url : 'commitInfo.php',
-                 method : 'POST',
-                 data : {sha: sha_id},
-								 contentType: "application/json; charset=utf-8",
-                 success: function(response){
-                   alert(sha_id);
-									 window.location.replace("commitInfo");
-                }
+	        const sha_id = $(this).data("sha");
+                $.ajax({
+                   url : 'commitInfo.php',
+                   method : 'POST',
+                   data : {sha: sha_id},
+		   contentType: "application/json; charset=utf-8",
+                   success: function(response){
+                      window.location.replace("commitInfo");
+                    }
+                 });
               });
-            });
-         });
-  </script>
+           });
+         </script>
 </head>
 
 <body>
          <!-- Tile of page -->
 	<div class="container">
-	  <header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
-	    <section class="header_title col-md-9 col-sm-9 col-xs-8">
-	      <h1>Kanopy Project</h1>
-		<p>List commits from Linux repo</p>
-	    </section>
-          </header>
+	   <header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
+	      <section class="header_title col-md-9 col-sm-9 col-xs-8">
+	         <h1>Kanopy Project</h1>
+		 <p>List commits from Linux repo</p>
+	      </section>
+           </header>
 
         <div class="row page_title col-md-12 col-sm-12 col-xs-12">
-	     <h2>List of commits in Linux repository</h2>
+	   <h2>List of commits in Linux repository</h2>
 	</div>
 
     <?php
-				var_dump($_POST);
+
         //Send UserAgent header to be allowed access to Github api
         $opts = [
             'http' => [
@@ -84,8 +83,8 @@
                 </figure>
                 <figure class="col-md-4">
                 </section>';
-               }
-          ?>
-	     </div>
+         }
+    ?>
+    </div>
 </body>
 </html>
