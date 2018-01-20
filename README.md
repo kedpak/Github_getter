@@ -27,7 +27,8 @@ Key ideas to plan:
 * The number one issue I must fix is the ajax request to post the sha id of the clicked on commit to be posted to the second page. I was not able to solve an issue I was facing where when the user clicks on a specific commit, the details of that commit should appear on the second page. I was struggling with how to convert jQuery variable into PHP variables and vice versa. I would like to focus more time on how the relationship between jQuery and PHP can be utilized. I was planning on using the sha-id of the commit selected, by appending the sha-id to the uri of the request on the second page to receive specific information about the commit.
 
 The following code was to make the post request using ajax
-`$(function (){
+```
+ $(function (){
     $(".commit").click(function(){
         const sha_id = $(this).data("sha");
         $.ajax({
@@ -41,7 +42,8 @@ The following code was to make the post request using ajax
             }
         });    
     });
-});`
+});
+```
 
 The above code should send a specific sha id, which will be appended to the end of the uri of the curl request to grab the specific data to be displayed. However it does not work.
 
