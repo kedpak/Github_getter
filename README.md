@@ -19,8 +19,9 @@ Key ideas to plan:
 * cd in to /kanopy direcory
 * If running on mac os start apache server with command 'sudo apachectl start'
 * If running on windows go this link for instructions to setup apache server[setup](https://www.tutorialrepublic.com/php-tutorial/php-get-started.php)
-* Inside the browser got to 'http://localhost/kanopy/kanopy.php'
-* Click on a commit and user will be taken see more commit details of commit selected (this still is bugged)
+* Inside the browser go to 'http://localhost/kanopy/kanopy.php'
+* Click on a commit and user will be taken see more commit details of commit selected (this still is buggy)
+* Click on profile picture to be taken to user's github 
 
 # To Improve
 
