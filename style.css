@@ -8,7 +8,6 @@ html body {
 	max-width: 1000px;
 }
 
-
 .page_title {
 	text-align: center;
 	opacity: 0.5;
@@ -19,8 +18,8 @@ html body {
 
 .files {
   text-decoration: underline;
-
 }
+
 
 .file_details {
   font-size: 17px;
@@ -40,8 +39,6 @@ html body {
   overflow: hidden;
 }
 
-
-
 h1 {
 	font-size: 80px;
 }
@@ -50,7 +47,8 @@ header {
 	border-bottom: 2px solid maroon;
 }
 
-/*/*responsive*/
+
+/*responsive*/
 
 @media screen and (min-width: 1200px) {
 	.container {
