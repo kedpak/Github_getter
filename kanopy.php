@@ -4,12 +4,14 @@
 <head>
 	<title>Kanopy</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+	      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
-	<script type="text/javascript"
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript">
+	  <!-- jQuery method which utilizes click event to change page and save sha of specific commit clicked on
+	       and post to the next page -->
 	  $(function (){
               $(".commit").click(function(event){
               const sha_id = event.target.id;
@@ -30,6 +32,7 @@
 </head>
 
 <body>
+         <!-- Tile of page -->
 	<div class="container">
 	  <header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
 	    <section class="header_title col-md-9 col-sm-9 col-xs-8">
@@ -56,17 +59,18 @@
         // Get data from github API
         // User: torvalds
         // repo: linux
-        // branch: default(master)
+        // since 
         $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits?since=2016-11-01T00:00:00Z', false, $context);
         $obj = json_decode($json);
 
+        // Create components and displays *important* data from each commit
         for($i=0; $i<sizeof($obj); $i++) {
           echo '<section class="row col-md-12 col-sm-12 col-xs-12">
-        		    <figure class="col-md-4">
+		<figure class="col-md-4">
                 <figcaption class="figcap">Commit</figcaption></a>
                 <div class="commit" id=' . $obj[$i]->sha . '>';
 
-                    // This grabs important details and displays them on to pages
+                 // This grabs important details and displays them on to pages
                   print_r($obj[$i]->commit->author->name);
                   echo '<br>';
                   print_r($obj[$i]->commit->author->email);
