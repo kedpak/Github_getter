@@ -26,14 +26,15 @@
 	   <header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
 	      <section class="header_title col-md-9 col-sm-9 col-xs-8">
 		<h1>Kanopy Project</h1>
-		    <p>Details about commit</p>
+		   <p>Details about commit</p>
 	      </section>
            </header>
 	<div class="row page_title col-md-12 col-sm-12 col-xs-12">
-		  <h2 id="btn">Information about commit</h2>
+	     <h2 id="btn">Information about commit</h2>
 	</div>
 
     <?php
+
         //Send UserAgent header to be allowed access to Github api
         $opts = [
             'http' => [
@@ -47,9 +48,9 @@
         $context = stream_context_create($opts);
 
         // Grab sha-id which was posted on view 1
-        $shaid = $_POST['sha_id'];
-        //echo $shaid;
-        // This api call should actually end with an append of $shaid, however $shaid is not obtaing the data necessary
+				print_r($_POST); // The ajax call is NOT posting the data to this page. Needs fix
+
+        // This api call should actually end with an append of a sha key posted from ajax call
         $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits/master', false, $context);
         $obj = json_decode($json);
 
@@ -92,7 +93,5 @@
 
       </section>
 	</div>
-
-
 </body>
 </html>

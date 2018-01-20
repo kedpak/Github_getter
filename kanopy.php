@@ -13,17 +13,16 @@
 	  /* jQuery method which utilizes click event to change page and save sha of specific commit clicked on
 	       and post to the next page */
 	  $(function (){
-              $(".commit").click(function(event){
-              const sha_id = event.target.id;
+              $(".commit").click(function(){
+							const sha_id = $(this).data("sha");
               $.ajax({
                  url : 'commitInfo.php',
                  method : 'POST',
-                 data : {
-                 sha_id: sha_id
-                 },
-                success: function(response){
-                   console.log(sha_id);
-                   window.location.replace("commitInfo");
+                 data : {sha: sha_id},
+								 contentType: "application/json; charset=utf-8",
+                 success: function(response){
+                   alert(sha_id);
+									 window.location.replace("commitInfo");
                 }
               });
             });
@@ -46,6 +45,7 @@
 	</div>
 
     <?php
+				var_dump($_POST);
         //Send UserAgent header to be allowed access to Github api
         $opts = [
             'http' => [
@@ -59,17 +59,15 @@
         // Get data from github API
         // User: torvalds
         // repo: linux
-        // since
         $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits?since=2016-11-01T00:00:00Z', false, $context);
         $obj = json_decode($json);
 
         // Create components and displays *important* data from each commit
         for($i=0; $i<sizeof($obj); $i++) {
           echo '<section class="row col-md-12 col-sm-12 col-xs-12">
-		<figure class="col-md-4">
+		<figure class="col-md-6" id="figure1">
                 <figcaption class="figcap">Commit</figcaption></a>
-                <div class="commit" id=' . $obj[$i]->sha . '>';
-
+                <div class="commit" data-sha=' . $obj[$i]->sha . '>';
                  // This grabs important details and displays them on to pages
                   print_r($obj[$i]->commit->author->name);
                   echo '<br>';
