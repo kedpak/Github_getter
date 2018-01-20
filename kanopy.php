@@ -10,9 +10,21 @@
   <script type="text/javascript"
   src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript">
-      $(document).ready(function(){
-        $(".commit").click(function(){
-        window.location.replace("commitInfo");
+      $(function (){
+        $(".commit").click(function(event){
+         const sha_id = event.target.id;
+         $.ajax({
+              url : 'commitInfo.php',
+              method : 'POST',
+              data : {
+               sha_id: sha_id
+              },
+              success: function(response){
+                console.log(sha_id);
+                window.location.replace("commitInfo")
+               // here response in the response you get from xyz.php
+              }
+          });
         });
       });
   </script>
@@ -47,32 +59,33 @@
         // User: torvalds
         // repo: linux
         // branch: default(master)
-        $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits/ec835f8104a21f4d4eeb9d316ee71d2b4a7f00de', false, $context);
+        $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits?since=2016-11-01T00:00:00Z', false, $context);
         $obj = json_decode($json);
 
-      ?>
+        for($i=0; $i<sizeof($obj); $i++) {
+          echo '<section class="row col-md-12 col-sm-12 col-xs-12">
+        		    <figure class="col-md-4">
+                <figcaption class="figcap">Commit</figcaption></a>
+                <div class="commit" id=' . $obj[$i]->sha . '>';
 
+                    // This grabs important details and displays them on to pages
+                  print_r($obj[$i]->commit->author->name);
+                  echo '<br>';
+                  print_r($obj[$i]->commit->author->email);
+                  echo '<br>';
+                  print_r($obj[$i]->commit->author->date);
+                  echo '<br>';
+                  echo '<br>';
+                  echo 'Commit message: ';
+                  echo '<br>';
+                  print_r($obj[$i]->commit->message);
 
-    	<section class="row col-md-12 col-sm-12 col-xs-12">
-    			<figure class="col-md-4">
-            <figcaption class="figcap">Commit</figcaption></a>
-            <div class="commit">
-              <?php
-                // This grabs important details and displays them on to pages
-                print_r($obj->commit->author->name);
-                echo '<br>';
-                print_r($obj->commit->author->email);
-                echo '<br>';
-                print_r($obj->commit->author->date);
-                echo '<br>';
-                echo '<br>';
-                echo 'Commit message: ';
-                echo '<br>';
-                print_r($obj->commit->message);
-              ?>
-            </div>
-    			</figure>
-    		<figure class="col-md-4">
-	</div>
+          echo  '</div>
+        			   </figure>
+        		     <figure class="col-md-4">
+                 </section>';
+               }
+          ?>
+	     </div>
 </body>
 </html>

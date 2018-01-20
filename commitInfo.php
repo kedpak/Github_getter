@@ -9,13 +9,6 @@
 	<meta charset="utf-8">
   <script type="text/javascript"
   src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript">
-      $(document).ready(function(){
-        $("#pic").click(function(){
-        window.location.replace(<?php print_r($obj->commiter->html_url)?>);
-      });
-    });
-  </script>
 </head>
 
 <body>
@@ -32,7 +25,6 @@
 	  </div>
 
     <?php
-
         //Send UserAgent header to be allowed access to Github api
         $opts = [
             'http' => [
@@ -44,48 +36,48 @@
         ];
 
         $context = stream_context_create($opts);
-        // Get data from github API
-        // User: torvalds
-        // repo: linux
-        // branch: default(master)
+
+        // Grab sha-id which was posted on view 1
+        $shaid = $_POST['sha_id'];
+        echo $shaid;
         $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits/master', false, $context);
         $obj = json_decode($json);
       ?>
+
       <section class="row col-md-12 col-sm-12 col-xs-12">
           <figure class="col-md-4">
-            <figcaption class="figcap">Profile!</figcaption></a>
-            <div class="Info!">
-              <div class="pic">
-                <img src=<?php print_r($obj->committer->avatar_url) ?> width="280px" height="300px"/>
-              </div>
-
-            </div>
+              <figcaption class="figcap">Profile!</figcaption></a>
+                <div class="Info!">
+                   <div class="pic">
+                      <img src=<?php print_r($obj->committer->avatar_url) ?> width="280px" height="300px"/>
+                  </div>
+                </div>
           </figure>
 
           <figure class="col-md-4">
-            <div class="details">
-              <h3 class="files"> Files </h3>
-              <div class="file_details">
-                  <?php
-                    // Loops through files array and returns
-                    // details of each file
-                    foreach($obj->files as $res) {
-                      echo "<p> FILENAME:  </p>";
-                      print_r($res->filename);
-                      echo "<br>";
-                      echo "<p> ADDITIONS: </p>";
-                      print_r($res->additions);
-                      echo "<br>";
-                      echo "<p> DELETIONS: </p>";
-                      print_r($res->deletions);
-                      echo "<br>";
-                      echo "<p> CHANGES: </p>";
-                      print_r($res->changes);
-                    }
-                  ?>
+                <div class="details">
+                  <h3 class="files"> Files </h3>
+                     <div class="file_details">
+                       <?php
+                          // Loops through files array and returns details of each file
+                          foreach($obj->files as $res) {
+                            echo "<p> FILENAME:  </p>";
+                            print_r($res->filename);
+                            echo "<br>";
+                            echo "<p> ADDITIONS: </p>";
+                            print_r($res->additions);
+                            echo "<br>";
+                            echo "<p> DELETIONS: </p>";
+                            print_r($res->deletions);
+                            echo "<br>";
+                            echo "<p> CHANGES: </p>";
+                            print_r($res->changes);
+                          }
+                        ?>
+                    </div>
               </div>
-          </div>
-          </figure>
+         </figure>
+
       </section>
 	</div>
 </body>
