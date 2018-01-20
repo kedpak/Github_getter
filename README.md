@@ -24,7 +24,33 @@ Key ideas to plan:
 
 # To Improve
 
-* The number one issue I would fix if given more time would be the post request to obtain the sha-id from the second page to the first. I was not able to solve an issue I was facing where when the user clicks on a specific commit, the details of that commit should appear on the second page. I was struggling with how to convert jQuery variable into PHP variables and vice versa. I would like to focus more time on how the relationship between jQuery and PHP can be utilized. I was planning on using the sha-id of the commit selected on the second page, by appending the sha-id to the uri of the request on the second page to receive specific information about the commit.
+* The number one issue I must fix is the ajax request to post the sha id of the clicked on commit to be posted to the second page. I was not able to solve an issue I was facing where when the user clicks on a specific commit, the details of that commit should appear on the second page. I was struggling with how to convert jQuery variable into PHP variables and vice versa. I would like to focus more time on how the relationship between jQuery and PHP can be utilized. I was planning on using the sha-id of the commit selected, by appending the sha-id to the uri of the request on the second page to receive specific information about the commit.
+
+The following code was to make the post request using ajax
+`$(function (){
+    $(".commit").click(function(){
+        const sha_id = $(this).data("sha");
+        $.ajax({
+            url : 'commitInfo.php',
+            type : 'POST',
+            data : {sha_id: sha_id},
+            contentType: "application/json; charset=utf-8",
+            success: function(response){
+                console.log(sha_id);
+                window.location.replace("commitInfo");
+            }
+        });    
+    });
+});`
+
+The above code should send a specific sha id, which will be appended to the end of the uri of the curl request to grab the specific data to be displayed. However it does not work.
+
+On the other page, I attempt to grab the sha id with the following code:
+
+`var_dump($_POST['sha_id']);`
+
+However, it returns NULL or undefined.
+
 
 * I would improve the user interface to look a more sleek and modern style.* 
 
