@@ -13,6 +13,21 @@ Key ideas to plan:
 * How much of my time should I focus on the UI?
 * How I should manage my time in general.
 
+### Data per container on first page:
+* Name of commiter
+* Email of commiter
+* Date of commit
+* Commit message
+
+### Data on second page
+* Profile picture of commiter
+* File names
+* Number of additions
+* Number of Deletions
+* Number of Changes
+
+### Data on second page
+
 # Installation and instructions
 
 * Fork or clone the repository
