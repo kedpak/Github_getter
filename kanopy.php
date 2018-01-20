@@ -4,14 +4,14 @@
 <head>
 	<title>Kanopy</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript">
-	  <!-- jQuery method which utilizes click event to change page and save sha of specific commit clicked on
-	       and post to the next page -->
+	  /* jQuery method which utilizes click event to change page and save sha of specific commit clicked on
+	       and post to the next page */
 	  $(function (){
               $(".commit").click(function(event){
               const sha_id = event.target.id;
@@ -23,7 +23,7 @@
                  },
                 success: function(response){
                    console.log(sha_id);
-                   window.location.replace("commitInfo")
+                   window.location.replace("commitInfo");
                 }
               });
             });
@@ -40,7 +40,7 @@
 		<p>List commits from Linux repo</p>
 	    </section>
           </header>
-	
+
         <div class="row page_title col-md-12 col-sm-12 col-xs-12">
 	     <h2>List of commits in Linux repository</h2>
 	</div>
@@ -59,7 +59,7 @@
         // Get data from github API
         // User: torvalds
         // repo: linux
-        // since 
+        // since
         $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits?since=2016-11-01T00:00:00Z', false, $context);
         $obj = json_decode($json);
 
