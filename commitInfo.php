@@ -9,6 +9,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		/* Channges page to the commiter's github user page when picture is clicked */
+		$(function (){
+		  $(".pic").click(function(){
+		    const profile_url = $(this).data("url");
+		    window.location.replace(profile_url);
+		  });
+	       });
+  </script>
 </head>
 
 <body>
@@ -39,18 +48,19 @@
 
         // Grab sha-id which was posted on view 1
         $shaid = $_POST['sha_id'];
-        echo $shaid;
+        //echo $shaid;
         // This api call should actually end with an append of $shaid, however $shaid is not obtaing the data necessary
         $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits/master', false, $context);
         $obj = json_decode($json);
+
       ?>
              <!-- section for profile picture -->
             <section class="row col-md-12 col-sm-12 col-xs-12">
                 <figure class="col-md-4">
                     <figcaption class="figcap">Profile!</figcaption></a>
                        <div class="Info!">
-                          <div class="pic">
-                            <img src=<?php print_r($obj->committer->avatar_url) ?> width="280px" height="300px"/>
+                          <div class="pic" data-url=<?php print_r($obj->author->html_url); ?>>
+                            <img src=<?php print_r($obj->committer->avatar_url); ?> width="280px" height="300px"/>
                           </div>
                       </div>
                 </figure>
@@ -82,5 +92,7 @@
 
       </section>
 	</div>
+
+
 </body>
 </html>
