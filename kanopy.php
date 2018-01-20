@@ -4,44 +4,43 @@
 <head>
 	<title>Kanopy</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
-  <script type="text/javascript"
-  src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript">
-      $(function (){
-        $(".commit").click(function(event){
-         const sha_id = event.target.id;
-         $.ajax({
-              url : 'commitInfo.php',
-              method : 'POST',
-              data : {
-               sha_id: sha_id
-              },
-              success: function(response){
-                console.log(sha_id);
-                window.location.replace("commitInfo")
-               // here response in the response you get from xyz.php
-              }
-          });
-        });
-      });
+	<script type="text/javascript"
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	  $(function (){
+              $(".commit").click(function(event){
+              const sha_id = event.target.id;
+              $.ajax({
+                 url : 'commitInfo.php',
+                 method : 'POST',
+                 data : {
+                 sha_id: sha_id
+                 },
+                success: function(response){
+                   console.log(sha_id);
+                   window.location.replace("commitInfo")
+                }
+              });
+            });
+         });
   </script>
 </head>
 
 <body>
 	<div class="container">
-		<header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
-			<section class="header_title col-md-9 col-sm-9 col-xs-8">
-				<h1>Kanopy Project</h1>
-				<p>List commits from Linux repo</p>
-			</section>
-		</header>
-
-		<div class="row page_title col-md-12 col-sm-12 col-xs-12">
-			<h2>List of commits in Linux repository</h2>
-	  </div>
+	  <header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
+	    <section class="header_title col-md-9 col-sm-9 col-xs-8">
+	      <h1>Kanopy Project</h1>
+		<p>List commits from Linux repo</p>
+	    </section>
+          </header>
+	
+        <div class="row page_title col-md-12 col-sm-12 col-xs-12">
+	     <h2>List of commits in Linux repository</h2>
+	</div>
 
     <?php
         //Send UserAgent header to be allowed access to Github api
@@ -53,7 +52,6 @@
                 ]
             ]
         ];
-
         $context = stream_context_create($opts);
         // Get data from github API
         // User: torvalds
@@ -81,9 +79,9 @@
                   print_r($obj[$i]->commit->message);
 
           echo  '</div>
-        			   </figure>
-        		     <figure class="col-md-4">
-                 </section>';
+                </figure>
+                <figure class="col-md-4">
+                </section>';
                }
           ?>
 	     </div>

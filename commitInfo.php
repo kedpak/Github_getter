@@ -7,50 +7,50 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
-  <script type="text/javascript"
-  src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
 
 <body>
-	<div class="container">
-		<header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
-			<section class="header_title col-md-9 col-sm-9 col-xs-8">
-				<h1>Kanopy Project</h1>
-				<p>Details about commit</p>
-			</section>
-		</header>
+        <div class="container">
+	  <header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
+	     <section class="header_title col-md-9 col-sm-9 col-xs-8">
+	       <h1>Kanopy Project</h1>
+	       <p>Details about commit</p>
+	     </section>
+          </header>
 
-		<div class="row page_title col-md-12 col-sm-12 col-xs-12">
-			<h2 id="btn">Information about commit</h2>
-	  </div>
+	<div class="row page_title col-md-12 col-sm-12 col-xs-12">
+	   <h2 id="btn">Information about commit</h2>
+	</div>
 
-    <?php
-        //Send UserAgent header to be allowed access to Github api
-        $opts = [
-            'http' => [
-              'method' => 'GET',
-              'header' => [
-                  'User-Agent: PHP'
-                ]
-            ]
-        ];
+<?php
+    //Send UserAgent header to be allowed access to Github api
+       $opts = [
+         'http' => [
+           'method' => 'GET',
+           'header' => [
+           'User-Agent: PHP'
+           ]
+         ]
+       ];
 
-        $context = stream_context_create($opts);
+       $context = stream_context_create($opts);
 
-        // Grab sha-id which was posted on view 1
-        $shaid = $_POST['sha_id'];
-        echo $shaid;
-        $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits/master', false, $context);
-        $obj = json_decode($json);
+       // Grab sha-id which was posted on view 1
+       $shaid = $_POST['sha_id'];
+       echo $shaid;
+       $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits/master', false, $context);
+       $obj = json_decode($json);
       ?>
 
       <section class="row col-md-12 col-sm-12 col-xs-12">
           <figure class="col-md-4">
-              <figcaption class="figcap">Profile!</figcaption></a>
+             <figcaption class="figcap">Profile!</figcaption></a>
                 <div class="Info!">
                    <div class="pic">
                       <img src=<?php print_r($obj->committer->avatar_url) ?> width="280px" height="300px"/>
-                  </div>
+                   </div>
                 </div>
           </figure>
 
@@ -74,11 +74,10 @@
                             print_r($res->changes);
                           }
                         ?>
-                    </div>
-              </div>
-         </figure>
-
-      </section>
-	</div>
+                     </div>
+                 </div>
+             </figure>
+        </section>
+   </div>
 </body>
 </html>
