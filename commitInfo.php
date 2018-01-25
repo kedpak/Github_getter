@@ -25,7 +25,7 @@
 	<div class="container">
 	   <header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
 	      <section class="header_title col-md-9 col-sm-9 col-xs-8">
-	         <h1>Kanopy Project</h1>
+	         <h1>Github Getter</h1>
 	         <p>Details about commit</p>
 	      </section>
            </header>
@@ -54,7 +54,7 @@
              <!-- section for profile picture -->
             <section class="row col-md-12 col-sm-12 col-xs-12">
                <figure class="col-md-4">
-                  <figcaption class="figcap">Profile!</figcaption></a>
+                  <figcaption class="figcap"><?php print_r($obj->commit->committer->name); ?></figcaption></a>
                      <div class="Info!">
                         <div class="pic" data-url=<?php print_r($obj->author->html_url); ?>>
                            <img src=<?php print_r($obj->committer->avatar_url); ?> width="280px" height="300px"/>
@@ -66,10 +66,10 @@
                <figure class="col-md-4">
                   <div class="details">
                      <h3 class="files"> Files </h3>
-                     <div class="file_details">
                      <?php
                          // Loops through files array and returns details of each file
                           foreach($obj->files as $res) {
+		            echo '<div class="file_details">';
                             echo "<p> FILENAME:  </p>";
                             print_r($res->filename);
                             echo "<br>";
@@ -81,9 +81,9 @@
                             echo "<br>";
                             echo "<p> CHANGES: </p>";
                             print_r($res->changes);
+		            echo '</div>';
                           }
                       ?>
-                      </div>
                    </div>
                 </figure>
              </section>
