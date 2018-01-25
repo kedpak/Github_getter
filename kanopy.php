@@ -12,18 +12,11 @@
 	<script type="text/javascript">
 	  /* jQuery method which utilizes click event to change page and save sha of specific commit clicked on
 	       and post to the next page */
+            //contentType: "application/json; charset=utf-8",
 	   $(function (){
-              $(".commit").click(function(){
+              $(".commit").on('click',function(){
 	        const sha_id = $(this).data("sha");
-                $.ajax({
-                   url : 'commitInfo.php',
-                   method : 'POST',
-                   data : {sha: sha_id},
-		   contentType: "application/json; charset=utf-8",
-                   success: function(response){
-                      window.location.replace("commitInfo");
-                    }
-                 });
+	        window.location.replace("commitInfo.php?sha=" + sha_id ); 
               });
            });
          </script>
@@ -44,7 +37,6 @@
 	</div>
 
     <?php
-
         //Send UserAgent header to be allowed access to Github api
         $opts = [
             'http' => [
@@ -54,6 +46,7 @@
                 ]
             ]
         ];
+        echo '{"success":true}';
         $context = stream_context_create($opts);
         // Get data from github API
         // User: torvalds

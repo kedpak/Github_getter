@@ -45,11 +45,10 @@
         ];
         $context = stream_context_create($opts);
 
-        // Grab sha-id which was posted on view 1
-	print_r($_POST); // The ajax call is NOT posting the data to this page. Needs fix
-
-        // This api call should actually end with an append of a sha key posted from ajax call
-        $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits/master', false, $context);
+        //sha id sent from first page
+        $sha_id = $_GET["sha"];
+        	
+        $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits/' . $sha_id, false, $context);
         $obj = json_decode($json);
       ?>
              <!-- section for profile picture -->
