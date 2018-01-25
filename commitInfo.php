@@ -63,7 +63,7 @@
                 </figure>
 
                <!-- Section for displaying results of details for commit -->
-               <figure class="col-md-4">
+               <figure class="col-md-6">
                   <div class="details">
                      <h3 class="files"> Files </h3>
                      <?php
@@ -72,6 +72,8 @@
 		            echo '<div class="file_details">';
                             echo "<p> FILENAME:  </p>";
                             print_r($res->filename);
+		            echo "<br>";
+		            echo "<p> STATUS:   </p>";
                             echo "<br>";
                             echo "<p> ADDITIONS: </p>";
                             print_r($res->additions);

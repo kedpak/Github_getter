@@ -54,13 +54,13 @@
         // Create components and displays *important* data from each commit
         for($i=0; $i<sizeof($obj); $i++) {
           echo '<section class="row col-md-12 col-sm-12 col-xs-12">
-		<figure class="col-md-6" id="figure1">
+		<figure class="col-md-12" id="figure1">
                 <figcaption class="figcap">Commit</figcaption></a>
                 <div class="commit" data-sha=' . $obj[$i]->sha . '>';
                  // This grabs important details and displays them on to pages
-                  print_r($obj[$i]->commit->author->name);
+                  print_r($obj[$i]->commit->committer->name);
                   echo '<br>';
-                  print_r($obj[$i]->commit->author->email);
+                  print_r($obj[$i]->commit->committer->email);
                   echo '<br>';
                   print_r($obj[$i]->commit->author->date);
                   echo '<br>';
