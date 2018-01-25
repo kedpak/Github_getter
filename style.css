@@ -1,5 +1,5 @@
 html body {
-	background-color: cornsilk;
+	background-color: black;
 }
 
 .container {
@@ -8,12 +8,16 @@ html body {
 	max-width: 1000px;
 }
 
+.header_title {
+	 color: yellow;
+	 font-family: Gill Sans;
+}
 .page_title {
 	text-align: center;
-	opacity: 0.5;
 	padding-bottom: 1em;
 	padding-top: 1.5em;
 	font-family: Gill Sans;
+	color: yellow;
 }
 
 .files {
@@ -27,12 +31,18 @@ html body {
   border-style: solid;
   border-width: medium;
   text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: Gill Sans;
+  
 }
 
 .figcap {
 	text-align: center;
-	font-family: cursive;
-	font-size: 30px
+	font-size: 30px;
+	color: yellow;
+	font-family: Gill Sans;
 }
 
 .commit {
@@ -41,6 +51,10 @@ html body {
   border-width: medium;
   text-align: left;
   overflow: hidden;
+  border-radius: 5px;
+  background-color: white;
+  font-family: Gill Sans;
+  
 }
 
 h1 {
