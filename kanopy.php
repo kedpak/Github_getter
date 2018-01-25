@@ -27,7 +27,7 @@
 	<div class="container">
 	   <header class="row pg_header col-md-12 col-sm-12 col-xs-12"/>
 	      <section class="header_title col-md-9 col-sm-9 col-xs-8">
-	         <h1>Kanopy Project</h1>
+	         <h1>Github Grabber</h1>
 		 <p>List commits from Linux repo</p>
 	      </section>
            </header>
@@ -46,11 +46,8 @@
                 ]
             ]
         ];
-        echo '{"success":true}';
         $context = stream_context_create($opts);
         // Get data from github API
-        // User: torvalds
-        // repo: linux
         $json = file_get_contents('https://api.github.com/repos/torvalds/linux/commits?since=2016-11-01T00:00:00Z', false, $context);
         $obj = json_decode($json);
 
